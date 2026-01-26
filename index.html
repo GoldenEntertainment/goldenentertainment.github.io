@@ -94,7 +94,21 @@ footer {
 <body>
     <h1>Welcome to TJ's Homepage</h1>
     <p>Hi! I'm TJ, and this is my personal homepage.</p>
+    <script>
+            const hours = new Date().getHours() // get the current hour
 
+            const isMorning = hours >= 4 && hours < 12 // is it morning?
+            const isAfternoon = hours >= 12 && hours < 17 // is it afternoon?
+            const isEvening = hours >= 17 || hours < 4 // is it evening?
+            
+            if (isMorning) {
+                document.write("Good morning! Hope you have a great day ahead.")
+            } else if (isAfternoon) {
+                document.write("Good afternoon! Hope you're having a wonderful day.")
+            } else if (isEvening) {
+                document.write("Good evening! Hope you had a fantastic day.")
+            }
+        </script>
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
@@ -129,4 +143,5 @@ footer {
     </footer>
 </body>
 </div>
+
 </html>
