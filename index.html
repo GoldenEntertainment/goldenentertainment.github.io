@@ -120,6 +120,53 @@ footer {
 
     <img src="imgs/WIN_20250203_07_50_19_Pro.jpg" width="400" alt="TJ">
 
+    <div id="carousel">
+            <img alt="Image 1">
+            <img alt="Image 2">
+            <img alt="Image 3">
+        </div>
+        <div id="buttons">
+            <button id="prev">Previous</button>
+            <button id="next">Next</button>
+        </div>
+
+        <script>
+            const images = [
+                "imgs/WIN_20240903_13_40_33_Pro.jpg",
+                "imgs/stuff2.png",
+                "imgs/20260209_193105.jpg"
+            ];
+
+            let currentIndex = 0;
+
+            const carouselImages = document.querySelectorAll("#carousel img");
+            const prevButton = document.getElementById("prev");
+            const nextButton = document.getElementById("next");
+
+            function updateCarousel() {
+                carouselImages.forEach((img, index) => {
+                    img.src = images[index];
+                    img.style.display = index === currentIndex ? "block" : "none";
+                });
+            }
+
+            prevButton.addEventListener("click", () => {
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                updateCarousel();
+            });
+
+            nextButton.addEventListener("click", () => {
+                currentIndex = (currentIndex + 1) % images.length;
+                updateCarousel();
+            });
+
+            updateCarousel(); // Initialize the carousel
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % images.length;
+                updateCarousel();
+            }, 5000);
+        </script>
+    
     <h1>About Me</h1>
     <p>This is my homepage where I share information about myself and my projects. I enjoy making video games & drawing well listen to music. as well as spending time with my family and friends. i also play video games like Minecraft, Portal 2, and FNAF World, but also likes to draw and animate. i also makes video games and is very good at using technology.</p>
 
@@ -145,3 +192,4 @@ footer {
 </div>
 
 </html>
+
