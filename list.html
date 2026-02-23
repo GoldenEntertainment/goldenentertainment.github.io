@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <script src="/site.js" defer></script>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <nav>
+        <ol>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="list.html">To Do List</a></li>
+            <li><a href="about.html">About Me</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ol>
+    </nav>
+
+    <main>
+        <h1>To Do List</h1>
+        <form>
+            <input type="text" id="taskInput" placeholder="Add a new task...">
+            <button type="button" onclick="addTask()">Add</button>
+        </form>
+        <ul id="taskList"></ul>
+    </main>
+
+    <script>
+        function addTask() {
+            const input = document.getElementById('taskInput');
+            const taskList = document.getElementById('taskList');
+            
+            if (input.value.trim() !== '') {
+                const li = document.createElement('li');
+                li.innerHTML = `${input.value} <button onclick="this.parentElement.remove()">Delete</button>`;
+                taskList.appendChild(li);
+                input.value = '';
+            }
+        }
+        
+        document.getElementById('taskInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') addTask();
+        });
+
+        // Save tasks to localStorage
+        function saveTasks() {
+            const tasks = [];
+            document.querySelectorAll('#taskList li').forEach(li => {
+            tasks.push(li.textContent.replace('Delete', '').trim());
+            });
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+        
+        // Load tasks from localStorage
+        function loadTasks() {
+            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            tasks.forEach(task => {
+            const li = document.createElement('li');
+            li.innerHTML = `${task} <button onclick="this.parentElement.remove(); saveTasks();">Delete</button>`;
+            document.getElementById('taskList').appendChild(li);
+            });
+        }
+        
+        // Update addTask to save
+        const originalAddTask = addTask;
+        addTask = function() {
+            originalAddTask();
+            saveTasks();
+        }
+        
+        // Load tasks on page load
+        loadTasks();
+    </script>
+
+</body>
+</html>
