@@ -6,122 +6,113 @@
     <title>TJ's Homepage</title>
     <script src="/site.js" defer></script>
     <link rel="stylesheet" href="style/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #wrapper {
+            width: 1000px;
+            background-color: lavender;
+            padding: 20px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        a {
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 20px;
+            display: block;
+            text-align: center;
+            transition: 200ms;
+        }
+
+        a:hover {
+            background-color: darkblue;
+        }
+
+        li {
+            float: left;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        ol li {
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            color: black;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+    </style>
 </head>
-<style>
-    * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-#wrapper {
-
-    width: 1000px;
-    background-color: lavender;
-    padding: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    
-}
-
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #f4f4f4;
-}
-
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 1rem;
-    text-align: center;
-}
-
-main {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-}
-
-ul {
-    list-style: none;
-    background-color: blue;
-    padding: 0px;
-    margin: 0px;
-    overflow: hidden;
-}
-a{
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bolder;
-    text-decoration: none;
-    padding: 20px;
-    display: block;
-    text-align: center;
-    transition: 200ms;
-}
-a:hover {
-    background-color: darkblue;
-    transition: 200ms;
-}
-li {
-    float: left;
-}
-
-
-h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-}
-
-p {
-    margin-bottom: 1rem;
-}
-
-ol {
-    margin-left: 2rem;
-    margin-bottom: 1rem;
-}
-
-footer {
-    color: black;
-    text-align: center;
-    padding: 1rem;
-    margin-top: 2rem;
-}
-</style>
-<div id="wrapper">
 <body>
-    <h1>Welcome to TJ's Homepage</h1>
-    <p>Hi! I'm TJ, and this is my personal homepage.</p>
-    <script>
-            const hours = new Date().getHours() // get the current hour
+    <div id="wrapper">
+        <h1>Welcome to TJ's Homepage</h1>
+        <p>Hi! I'm TJ, and this is my personal homepage.</p>
+        
+        <div id="Welcome"></div>
 
-            const isMorning = hours >= 4 && hours < 12 // is it morning?
-            const isAfternoon = hours >= 12 && hours < 17 // is it afternoon?
-            const isEvening = hours >= 17 || hours < 4 // is it evening?
-            
-            if (isMorning) {
-                document.write("Good morning! Hope you have a great day ahead.")
-            } else if (isAfternoon) {
-                document.write("Good afternoon! Hope you're having a wonderful day.")
-            } else if (isEvening) {
-                document.write("Good evening! Hope you had a fantastic day.")
-            }
-        </script>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About Me</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="list.html">To Do List</a></li>
+                <li><a href="about.html">About Me</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
 
-    <img src="imgs/WIN_20250203_07_50_19_Pro.jpg" width="400" alt="TJ">
+        <img src="imgs/WIN_20250203_07_50_19_Pro.jpg" width="400" alt="TJ">
 
-    <div id="carousel">
+        <div id="carousel">
             <img alt="Image 1">
             <img alt="Image 2">
             <img alt="Image 3">
@@ -131,67 +122,69 @@ footer {
             <button id="next">Next</button>
         </div>
 
-        <script>
-            const images = [
-                "imgs/WIN_20240903_13_40_33_Pro.jpg",
-                "imgs/stuff2.png",
-                "imgs/20260209_193105.jpg"
-            ];
+        <h1>About Me</h1>
+        <p>This is my homepage where I share information about myself and my projects. I enjoy making video games and drawing, as well as listening to music and spending time with my family and friends.</p>
 
-            let currentIndex = 0;
+        <h2>My Interests</h2>
+        <ol>
+            <li>Favorite Color: Blue</li>
+            <li>Hobbies: Drawing, Gaming, Animating</li>
+            <li>Favorite Games: Minecraft, Portal 2, FNAF World</li>
+            <li>Skills: Game Development, Digital Art, Animation</li>
+            <li>Favorite Music: Pop, Video Game Soundtracks</li>
+            <li>Favorite Movie: The First Spongebob Movie</li>
+        </ol>
 
-            const carouselImages = document.querySelectorAll("#carousel img");
-            const prevButton = document.getElementById("prev");
-            const nextButton = document.getElementById("next");
+        <footer>
+            <p>&copy; 2025 TJ's Homepage. All rights reserved.</p>
+        </footer>
+    </div>
 
-            function updateCarousel() {
-                carouselImages.forEach((img, index) => {
-                    img.src = images[index];
-                    img.style.display = index === currentIndex ? "block" : "none";
-                });
-            }
+    <script>
+        const hours = new Date().getHours();
+        const welcome = document.getElementById("Welcome");
+        
+        if (hours >= 4 && hours < 12) {
+            welcome.textContent = "Good morning! Hope you have a great day ahead.";
+        } else if (hours >= 12 && hours < 17) {
+            welcome.textContent = "Good afternoon! Hope you're having a wonderful day.";
+        } else {
+            welcome.textContent = "Good evening! Hope you had a fantastic day.";
+        }
 
-            prevButton.addEventListener("click", () => {
-                currentIndex = (currentIndex - 1 + images.length) % images.length;
-                updateCarousel();
+        const images = [
+            "imgs/WIN_20240903_13_40_33_Pro.jpg",
+            "imgs/stuff2.png",
+            "imgs/20260209_193105.jpg"
+        ];
+
+        let currentIndex = 0;
+        const carouselImages = document.querySelectorAll("#carousel img");
+        const prevButton = document.getElementById("prev");
+        const nextButton = document.getElementById("next");
+
+        function updateCarousel() {
+            carouselImages.forEach((img, index) => {
+                img.src = images[index];
+                img.style.display = index === currentIndex ? "block" : "none";
             });
+        }
 
-            nextButton.addEventListener("click", () => {
-                currentIndex = (currentIndex + 1) % images.length;
-                updateCarousel();
-            });
+        prevButton.addEventListener("click", () => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateCarousel();
+        });
 
-            updateCarousel(); // Initialize the carousel
-            setInterval(() => {
-                currentIndex = (currentIndex + 1) % images.length;
-                updateCarousel();
-            }, 5000);
-        </script>
-    
-    <h1>About Me</h1>
-    <p>This is my homepage where I share information about myself and my projects. I enjoy making video games & drawing well listen to music. as well as spending time with my family and friends. i also play video games like Minecraft, Portal 2, and FNAF World, but also likes to draw and animate. i also makes video games and is very good at using technology.</p>
+        nextButton.addEventListener("click", () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateCarousel();
+        });
 
-    <h2>My Interests</h2>
-    <ol>
-        <li>Favorite Color: Blue</li>
-        <br>
-        <li>Hobbies: Drawing, Gaming, Animating</li>
-        <br>
-        <li>Favorite Games: Minecraft, Portal 2, FNAF World</li>
-        <br>
-        <li>Skills: Game Development, Digital Art, Animation</li>
-        <br>
-        <li>Favorite Music: Pop, Video Game Soundtracks</li>
-        <br>
-        <li>Favorite Movie: The First Spongebob Movie</li>
-    </ol>
-
-    <footer>
-        <p>&copy; 2025 TJ's Homepage. All rights reserved.</p>
-    </footer>
+        updateCarousel();
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateCarousel();
+        }, 5000);
+    </script>
 </body>
-</div>
-
 </html>
-
-
