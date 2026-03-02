@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon</title>
+    <link rel="stylesheet" href="style/style.css">
+    <style>
+        .pokemon-ctr {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 400px;
+            width: 1000px;
+            background-color: lavender;
+            padding: 20px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .pokemon-ctr img {
+            max-width: 300px;
+            height: auto;
+        }
+
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        }
+
+        #wrapper {
+
+        width: 1000px;
+        background-color: lavender;
+        padding: 20px;
+        margin-left: auto;
+        margin-right: auto;
+
+        }
+
+        body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: lavender;
+        }
+
+        header {
+        background-color: #333;
+        color: #fff;
+        padding: 1rem;
+        text-align: center;
+        }
+
+        main {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+        }
+
+        ol {
+        list-style: none;
+        padding: 0px;
+        margin: 0px;
+        overflow: hidden;
+        }
+        a{
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bolder;
+        text-decoration: none;
+        padding: 20px;
+        display: block;
+        text-align: center;
+        transition: 200ms;
+        }
+        a:hover {
+        background-color: darkblue;
+        transition: 200ms;
+        }
+        li {
+        float: left;
+        }
+
+
+        h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        }
+
+        p {
+        margin-bottom: 1rem;
+        }
+
+        ol {
+        margin-left: 2rem;
+        margin-bottom: 1rem;
+        }
+
+        footer {
+        color: black;
+        text-align: center;
+        padding: 1rem;
+        margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    
+     <h1>Pokémon</h1>
+    <p>take a look at a random Pokémon!</p>
+    <nav>
+        <ol>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="list.html">To Do List</a></li>
+            <li><a href="about.html">About Me</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            
+        </ol>
+    </nav>
+    <div class="pokemon-ctr"></div>
+    <script>
+        const getRandomPokemon = async () => {
+            const url = 'https://pokeapi.co/api/v2/pokemon/' + Math.floor(Math.random() * 150);
+            const response = await fetch(url);
+            const pokemonObj = await response.json();
+            return pokemonObj;
+        };
+
+        const renderPokemon = (pokemonObj) => {
+            const container = document.querySelector('.pokemon-ctr');
+            const img = document.createElement('img');
+            img.src = pokemonObj.sprites.front_default;
+            img.alt = pokemonObj.name;
+            const name = document.createElement('h2');
+            name.textContent = pokemonObj.name.charAt(0).toUpperCase() + pokemonObj.name.slice(1);
+            container.innerHTML = '';
+            container.appendChild(img);
+            container.appendChild(name);
+            return pokemonObj;
+        };
+
+        (async () => {
+            const pokemon = await getRandomPokemon();
+            renderPokemon(pokemon);
+        })();
+
+        
+    </script>
+</body>
+</html>
