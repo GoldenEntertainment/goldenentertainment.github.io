@@ -1,0 +1,1 @@
+const fortunes = require('./fortunes.json')
