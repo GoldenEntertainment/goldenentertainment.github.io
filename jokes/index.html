@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Joke API</title>
+    <style>
+        body { font-family: Arial; text-align: center; padding: 50px; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+        #joke { margin-top: 30px; font-size: 18px; }
+    </style>
+</head>
+<body>
+    <h1>Joke API</h1>
+    <button onclick="getJoke()">Get Joke</button>
+    <div id="joke"></div>
+    <script>
+        async function getJoke() {
+            const response = await fetch('/api/v1/random-joke');
+            const data = await response.json();
+            document.getElementById('joke').innerHTML = 
+                '<p><strong>' + data.joke + '</strong></p>' +
+                '<p>' + data.punchline + '</p>';
+        }
+    </script>
+</body>
+</html>
