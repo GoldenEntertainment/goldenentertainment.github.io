@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="food.css">
+    <script src="site.js" defer></script>
+    <title>Food Truck</title>
+
+</head>
+<body>
+    <nav>
+        <a href="#/">Home</a> |
+        <a href="#/admin">Admin</a>
+    </nav>
+    <div id="home" class="page active">
+        <h1>DJ's Food Truck Home</h1>
+        <h2>Menu</h2>
+        <ul id="menu-list">
+            <!-- Menu items will be populated here -->
+        </ul>
+        <h2>Events</h2>
+        <ul id="events-list">
+            <!-- Events will be populated here -->
+        </ul>
+    </div>
+    <div id="event" class="page">
+        <h1>Event Details</h1>
+        <div id="event-details">
+            <!-- Event details will be populated here -->
+        </div>
+        <button onclick="navigateTo('/')">Back to Home</button>
+    </div>
+    <div id="admin" class="page">
+        <h1>Admin Panel</h1>
+        <h2>Add Menu Item</h2>
+        <form id="menu-form">
+            <label>Name: <input type="text" id="menu-name" required></label>
+            <label>Description: <textarea id="menu-desc" required></textarea></label>
+            <label>Price: <input type="number" id="menu-price" required></label>
+            <label>Image URL: <input type="url" id="menu-image" required></label>
+            <button type="submit">Add Menu Item</button>
+        </form>
+        <h2>Add Event</h2>
+        <form id="event-form">
+            <label>Name: <input type="text" id="event-name" required></label>
+            <label>Location: <input type="text" id="event-location" required></label>
+            <label>Date: <input type="date" id="event-date" required></label>
+            <label>Time: <input type="time" id="event-time" required></label>
+            <button type="submit">Add Event</button>
+        </form>
+    </div>
+    <script>
+        // Sample data (in a real app, this would come from a backend)
+        let menuItems = [
+            { name: 'Burger', description: 'Delicious burger', price: 10, image: 'img/Print-Summer-Smash-Burger.webp' }
+        ];
+        let events = [
+            { id: 1, name: 'Festival', location: 'Park', date: '2023-10-01', time: '12:00' }
+        ];
+
+        function renderHome() {
+            const menuList = document.getElementById('menu-list');
+            menuList.innerHTML = menuItems.map(item => `<li><img src="${item.image}" alt="${item.name}" width="50"><strong>${item.name}</strong>: ${item.description} - $${item.price}</li>`).join('');
+            const eventsList = document.getElementById('events-list');
+            eventsList.innerHTML = events.map(event => `<li><a href="#/event/${event.id}">${event.name} - ${event.date}</a></li>`).join('');
+        }
+
+        function renderEvent(eventId) {
+            const event = events.find(e => e.id == eventId);
+            const details = document.getElementById('event-details');
+            if (event) {
+                details.innerHTML = `<p><strong>Name:</strong> ${event.name}</p><p><strong>Location:</strong> ${event.location}</p><p><strong>Date:</strong> ${event.date}</p><p><strong>Time:</strong> ${event.time}</p>`;
+            } else {
+                details.innerHTML = '<p>Event not found.</p>';
+            }
+        }
+
+        function navigateTo(path) {
+            window.location.hash = path;
+        }
+
+        function handleRoute() {
+            const hash = window.location.hash.slice(1) || '/';
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            if (hash === '/') {
+                document.getElementById('home').classList.add('active');
+                renderHome();
+            } else if (hash.startsWith('/event/')) {
+                const eventId = hash.split('/')[2];
+                document.getElementById('event').classList.add('active');
+                renderEvent(eventId);
+            } else if (hash === '/admin') {
+                document.getElementById('admin').classList.add('active');
+            }
+        }
+
+        window.addEventListener('hashchange', handleRoute);
+        window.addEventListener('load', handleRoute);
+
+        document.getElementById('menu-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('menu-name').value;
+            const desc = document.getElementById('menu-desc').value;
+            const price = document.getElementById('menu-price').value;
+            const image = document.getElementById('menu-image').value;
+            menuItems.push({ name, description: desc, price: parseFloat(price), image });
+            alert('Menu item added!');
+            this.reset();
+        });
+
+        document.getElementById('event-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('event-name').value;
+            const location = document.getElementById('event-location').value;
+            const date = document.getElementById('event-date').value;
+            const time = document.getElementById('event-time').value;
+            events.push({ id: events.length + 1, name, location, date, time });
+            alert('Event added!');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
