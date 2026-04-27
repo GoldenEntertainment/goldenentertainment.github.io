@@ -52,10 +52,10 @@
     </div>
     <script>
         // Sample data (in a real app, this would come from a backend)
-        let menuItems = [
+        let menuItems = JSON.parse(localStorage.getItem('menuItems')) || [
             { name: 'Burger', description: 'Delicious burger', price: 10, image: 'img/Print-Summer-Smash-Burger.webp' }
         ];
-        let events = [
+        let events = JSON.parse(localStorage.getItem('events')) || [
             { id: 1, name: 'Festival', location: 'Park', date: '2023-10-01', time: '12:00' }
         ];
 
@@ -105,6 +105,7 @@
             const price = document.getElementById('menu-price').value;
             const image = document.getElementById('menu-image').value;
             menuItems.push({ name, description: desc, price: parseFloat(price), image });
+            localStorage.setItem('menuItems', JSON.stringify(menuItems));
             alert('Menu item added!');
             this.reset();
         });
@@ -116,6 +117,7 @@
             const date = document.getElementById('event-date').value;
             const time = document.getElementById('event-time').value;
             events.push({ id: events.length + 1, name, location, date, time });
+            localStorage.setItem('events', JSON.stringify(events));
             alert('Event added!');
             this.reset();
         });
